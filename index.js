@@ -2,8 +2,14 @@ const express = require('express')
 const app = express()
 
 app.get('/seatbooking/authenticate/username=:user&password=:password', (req, res) => {
-    console.log(req.params.user, req.params.password);
-  res.send('hello world')
+  
+    if((req.params.user === "admin" && req.params.password === "password") || (req.params.user === "vishnu" && req.params.password === "1234")){
+      
+      res.send(200)
+    }else {
+      res.sendStatus(401).send("authentication failure")
+    }
+  // res.send('hello world')
 }) 
 
-app.listen(4000)
+app.listen(4000)                                            
